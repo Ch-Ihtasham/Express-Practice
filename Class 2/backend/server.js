@@ -8,7 +8,7 @@ const port = 3000
 app.get('/', (req, res) => {
     res.send('hello world')
 })
-app.get('/jokes', () => {
+app.get('/jokes', (req, res) => {
     const jokes = [
         {
             id: 1,
@@ -36,7 +36,9 @@ app.get('/jokes', () => {
             content: 'this is a joke'
         }
     ]
+    res.send(jokes)
+
 })
 app.listen(process.env.port, () => {
-    console.log(`app running at port ${port}`)
+    console.log(`app running at port ${process.env.port}`)
 })
