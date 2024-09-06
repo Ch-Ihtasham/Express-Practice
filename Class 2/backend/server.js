@@ -8,6 +8,35 @@ const port = 3000
 app.get('/', (req, res) => {
     res.send('hello world')
 })
+app.get('/jokes', () => {
+    const jokes = [
+        {
+            id: 1,
+            title: 'first joke',
+            content: 'this is a joke'
+        },
+        {
+            id: 2,
+            title: 'second joke',
+            content: 'this is a joke'
+        },
+        {
+            id: 3,
+            title: 'third joke',
+            content: 'this is a joke'
+        },
+        {
+            id: 4,
+            title: 'forth joke',
+            content: 'this is a joke'
+        },
+        {
+            id: 5,
+            title: 'fifth joke',
+            content: 'this is a joke'
+        }
+    ]
+})
 app.listen(process.env.port, () => {
     console.log(`app running at port ${port}`)
 })
