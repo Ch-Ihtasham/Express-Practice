@@ -82,6 +82,49 @@ app.get('/:id', async (req, res) => {
     }
 })
 
+// update the to do 
+
+app.patch('/:todoId', async (req, res) => {
+    const todoId = req.params.todoId;
+    const updateTodo = req.body;
+    try {
+        const result = await todo.findByIdAndUpdate(todoId, updateTodo, {
+            new: true
+        })
+        res.send({
+            success: true,
+            message: 'Successfully Updated the todo',
+            data: result
+        })
+    }
+    catch (error) {
+        res.send({
+            success: false,
+            message: 'Did not update the todo',
+            error: error.message
+        })
+    }
+})
+
+// for delete 
+
+app.delete('/delete/:todoId', async (req, res) => {
+    const todoId = req.params.todoId;
+    try {
+        await todo.findByIdAndDelete(todoId)
+        res.send({
+            success: true,
+            message: 'Deleted successfully'
+        })
+    }
+    catch (error) {
+        res.send({
+            success: false,
+            message: 'fail to delete'
+        })
+    }
+})
+
 app.listen(port, () => {
     console.log(`app is running on ${port}`)
 })
